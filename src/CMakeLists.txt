@@ -1,0 +1,7 @@
+set(INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
+
+file(GLOB_RECURSE HEADERS CONFIGURE_DEPENDS ${INCLUDE_DIR}/${PROJECT_NAME}/*.h)
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS *.h *.c)
+
+add_library(regression ${HEADERS} ${SOURCES})
+target_include_directories(regression PUBLIC ${INCLUDE_DIR})
