@@ -4,5 +4,8 @@ build/
 # Python
 __pycache__
 
+# Visual Studio Code
+.vscode/
+
 # OSX
 .DS_store

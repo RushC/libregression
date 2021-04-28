@@ -1,8 +1,51 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include <regression/bitset.h>
 #include <regression/matrix.h>
 #include <regression/quadratic.h>
+
+static void test_bitset(void)
+{
+    static const size_t NUM_BITS = 20;
+
+    bitset bits[BITSET_SIZE(NUM_BITS)] = {0};
+
+    printf("Initial: ");
+    bitset_print(bits, NUM_BITS);
+    printf("\n");
+
+    bitset_set(bits, 1);
+    bitset_set(bits, 4);
+    bitset_set(bits, 5);
+    bitset_set(bits, 6);
+    bitset_set(bits, 9);
+    bitset_set(bits, 10);
+    bitset_set(bits, 11);
+    bitset_set(bits, 16);
+    bitset_set(bits, 19);
+
+    printf("Set:     ");
+    bitset_print(bits, NUM_BITS);
+    printf("\n");
+
+    bitset_clear(bits, 4);
+    bitset_clear(bits, 6);
+    bitset_clear(bits, 19);
+
+    printf("Clear:   ");
+    bitset_print(bits, NUM_BITS);
+    printf("\n");
+
+    for (size_t i = 0; i < NUM_BITS; ++i)
+    {
+        bitset_write(bits, i, i % 2);
+    }
+
+    printf("Write:   ");
+    bitset_print(bits, NUM_BITS);
+    printf("\n");
+}
 
 static void test_matrix(void)
 {
@@ -46,6 +89,7 @@ static void test_quadratic(void)
 
 int main()
 {
-    test_matrix();
-    test_quadratic();
+    test_bitset();
+    // test_matrix();
+    // test_quadratic();
 }
